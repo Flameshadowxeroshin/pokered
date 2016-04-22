@@ -5281,7 +5281,14 @@ IncrementMovePP: ; 3e373 (f:6373)
 
 ; function to adjust the base damage of an attack to account for type effectiveness
 AdjustDamageForMoveType: ; 3e3a5 (f:63a5)
+	ld a,[H_WHOSETURN]
+	and a
+	jr nz, .enemyTurn
 ; values for player turn
+	;tertu: struggle deals typeless damage, if we're looking at it then quit
+	ld a,[wPlayerUsedMove]
+	cp STRUGGLE
+	ret z
 	ld hl,wBattleMonType
 	ld a,[hli]
 	ld b,a    ; b = type 1 of attacker
@@ -5292,10 +5299,13 @@ AdjustDamageForMoveType: ; 3e3a5 (f:63a5)
 	ld e,[hl] ; e = type 2 of defender
 	ld a,[wPlayerMoveType]
 	ld [wMoveType],a
-	ld a,[H_WHOSETURN]
-	and a
-	jr z,.next
+	jr .next
+.enemyTurn
 ; values for enemy turn
+	;as above, so below
+	ld a,[wEnemyUsedMove]
+	cp STRUGGLE
+	ret z
 	ld hl,wEnemyMonType
 	ld a,[hli]
 	ld b,a    ; b = type 1 of attacker
@@ -7226,6 +7236,7 @@ MoveEffectPointerTable: ; 3f150 (f:7150)
 	 dw LeechSeedEffect           ; LEECH_SEED_EFFECT
 	 dw SplashEffect              ; SPLASH_EFFECT
 	 dw DisableEffect             ; DISABLE_EFFECT
+     dw FlinchSideEffect          ; FLINCH_SIDE_EFFECT3
 
 SleepEffect: ; 3f1fc (f:71fc)
 	ld de, wEnemyMonStatus
@@ -7297,8 +7308,12 @@ PoisonEffect: ; 3f24f (f:724f)
 	ld a, [hli]
 	cp POISON ; can't posion a poison-type target
 	jr z, .noEffect
+	cp STEEL ; also can't poison a steel-type target
+	jr z, .noEffect
 	ld a, [hld]
 	cp POISON ; can't posion a poison-type target
+	jr z, .noEffect
+	cp STEEL ; also can't poison a steel-type target
 	jr z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1
@@ -8199,7 +8214,10 @@ FlinchSideEffect: ; 3f85b (f:785b)
 	cp FLINCH_SIDE_EFFECT1
 	ld b, $1a ; ~10% chance of flinch
 	jr z, .gotEffectChance
+	cp FLINCH_SIDE_EFFECT2
 	ld b, $4d ; ~30% chance of flinch
+	jr z, .gotEffectChance
+	ld b, $33 ; exactly 20% chance, I think
 .gotEffectChance
 	call BattleRandom
 	cp b

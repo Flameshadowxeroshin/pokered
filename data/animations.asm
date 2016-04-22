@@ -163,6 +163,11 @@ AttackAnimationPointers: ; 7a07d (1e:607d)
 	dw SuperFangAnim
 	dw SlashAnim
 	dw SubstituteAnim
+	dw SwiftAnim ;Magnet Bomb
+	dw MegaDrainAnim ;Drainingkiss
+	dw SwiftAnim ;Cute Voice
+	dw FlamethrowerAnim ;Dragonbreath
+	dw GustAnim ;Twister
 	dw StruggleAnim
 	dw ShowPicAnim
 	dw EnemyFlashAnim

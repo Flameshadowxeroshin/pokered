@@ -454,6 +454,7 @@ Mon130_EvosMoves: ; 3b2ea (e:72ea)
 ;Learnset
 	db 20,BITE
 	db 25,DRAGON_RAGE
+	db 29,TWISTER
 	db 32,LEER
 	db 41,HYDRO_PUMP
 	db 52,HYPER_BEAM
@@ -599,7 +600,8 @@ Mon095_EvosMoves: ; 3b384 (e:7384)
 ;Learnset
 	db 15,BIND
 	db 19,ROCK_THROW
-	db 25,RAGE
+	db 25,DRAGONBREATH
+	db 28,RAGE
 	db 33,SLAM
 	db 43,HARDEN
 	db 0
@@ -625,6 +627,7 @@ Mon016_EvosMoves: ; 3b39c (e:739c)
 	db 5,SAND_ATTACK
 	db 12,QUICK_ATTACK
 	db 19,WHIRLWIND
+	db 21,TWISTER
 	db 28,WING_ATTACK
 	db 36,AGILITY
 	db 44,MIRROR_MOVE
@@ -842,6 +845,7 @@ Mon082_EvosMoves: ; 3b485 (e:7485)
 ;Evolutions
 	db 0
 ;Learnset
+	db 17, MAGNET_BOMB
 	db 21,SONICBOOM
 	db 25,THUNDERSHOCK
 	db 29,SUPERSONIC
@@ -974,6 +978,7 @@ Mon149_EvosMoves: ; 3b500 (e:7500)
 	db 0
 ;Learnset
 	db 10,THUNDER_WAVE
+	db 11,TWISTER
 	db 20,AGILITY
 	db 35,SLAM
 	db 45,DRAGON_RAGE
@@ -1187,6 +1192,7 @@ Mon147_EvosMoves: ; 3b5a8 (e:75a8)
 	db 0
 ;Learnset
 	db 10,THUNDER_WAVE
+	db 11,TWISTER
 	db 20,AGILITY
 	db 30,SLAM
 	db 40,DRAGON_RAGE
@@ -1200,6 +1206,7 @@ Mon148_EvosMoves: ; 3b5b7 (e:75b7)
 	db 0
 ;Learnset
 	db 10,THUNDER_WAVE
+	db 11,TWISTER
 	db 20,AGILITY
 	db 35,SLAM
 	db 45,DRAGON_RAGE
@@ -1235,6 +1242,7 @@ Mon116_EvosMoves: ; 3b5dd (e:75dd)
 	db EV_LEVEL,32,SEADRA
 	db 0
 ;Learnset
+	db 17,TWISTER
 	db 19,SMOKESCREEN
 	db 24,LEER
 	db 30,WATER_GUN
@@ -1247,6 +1255,7 @@ Mon117_EvosMoves: ; 3b5ec (e:75ec)
 ;Evolutions
 	db 0
 ;Learnset
+	db 17,TWISTER
 	db 19,SMOKESCREEN
 	db 24,LEER
 	db 30,WATER_GUN
@@ -1323,6 +1332,7 @@ Mon039_EvosMoves: ; 3b62e (e:762e)
 	db 0
 ;Learnset
 	db 9,POUND
+	db 11,CUTE_VOICE
 	db 14,DISABLE
 	db 19,DEFENSE_CURL
 	db 24,DOUBLESLAP
@@ -1866,6 +1876,7 @@ Mon017_EvosMoves: ; 3b823 (e:7823)
 	db 5,SAND_ATTACK
 	db 12,QUICK_ATTACK
 	db 21,WHIRLWIND
+	db 22,TWISTER
 	db 31,WING_ATTACK
 	db 40,AGILITY
 	db 49,MIRROR_MOVE
@@ -1879,6 +1890,7 @@ Mon018_EvosMoves: ; 3b834 (e:7834)
 	db 5,SAND_ATTACK
 	db 12,QUICK_ATTACK
 	db 21,WHIRLWIND
+	db 22,TWISTER
 	db 31,WING_ATTACK
 	db 44,AGILITY
 	db 54,MIRROR_MOVE
@@ -2124,6 +2136,7 @@ Mon081_EvosMoves: ; 3b923 (e:7923)
 	db EV_LEVEL,30,MAGNETON
 	db 0
 ;Learnset
+	db 17, MAGNET_BOMB
 	db 21,SONICBOOM
 	db 25,THUNDERSHOCK
 	db 29,SUPERSONIC

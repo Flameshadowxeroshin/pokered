@@ -163,5 +163,9 @@ MoveNames:: ; b0000 (2c:4000)
 	db "SUPER FANG@"
 	db "SLASH@"
 	db "SUBSTITUTE@"
+	db "MAGNET BOMB@"
+    db "DRAININGKISS@"
+	db "CUTE VOICE@"
+	db "DRAGONBREATH@"
+    db "TWISTER@"
 	db "STRUGGLE@"
-
