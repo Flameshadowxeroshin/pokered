@@ -1,4 +1,4 @@
-
+; currently available extra bytes: 14
 INCLUDE "constants.asm"
 
 flag_array: MACRO
@@ -2180,8 +2180,6 @@ wSavedSpriteMapY:: ; d132
 wSavedSpriteMapX:: ; d133
 	ds 1
 
-	ds 5
-
 wWhichPrize:: ; d139
 	ds 1
 
@@ -2923,11 +2921,6 @@ wDungeonWarpDestinationMap:: ; d71d
 wWhichDungeonWarp:: ; d71e
 ; which dungeon warp within the source map was used
 	ds 1
-
-wUnusedD71F:: ; d71f
-	ds 1
-
-	ds 8
 
 wd728:: ; d728
 ; bit 0: using Strength outside of battle

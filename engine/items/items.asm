@@ -1549,55 +1549,9 @@ ItemUseXAccuracy: ; e013 (3:6013)
 
 ; This function is bugged and never works. It always jumps to ItemUseNotTime.
 ; The Card Key is handled in a different way.
+; tertu: just replaced it with fucking ItemUseNotTime 
 ItemUseCardKey: ; e022 (3:6022)
-	xor a
-	ld [wUnusedD71F],a
-	call GetTileAndCoordsInFrontOfPlayer
-	ld a,[GetTileAndCoordsInFrontOfPlayer]
-	cp a,$18
-	jr nz,.next0
-	ld hl,CardKeyTable1
-	jr .next1
-.next0
-	cp a,$24
-	jr nz,.next2
-	ld hl,CardKeyTable2
-	jr .next1
-.next2
-	cp a,$5e
-	jp nz,ItemUseNotTime
-	ld hl,CardKeyTable3
-.next1
-	ld a,[wCurMap]
-	ld b,a
-.loop
-	ld a,[hli]
-	cp a,$ff
-	jp z,ItemUseNotTime
-	cp b
-	jr nz,.nextEntry1
-	ld a,[hli]
-	cp d
-	jr nz,.nextEntry2
-	ld a,[hli]
-	cp e
-	jr nz,.nextEntry3
-	ld a,[hl]
-	ld [wUnusedD71F],a
-	jr .done
-.nextEntry1
-	inc hl
-.nextEntry2
-	inc hl
-.nextEntry3
-	inc hl
-	jr .loop
-.done
-	ld hl,ItemUseText00
-	call PrintText
-	ld hl,wd728
-	set 7,[hl]
-	ret
+	jp ItemUseNotTime
 
 ; These tables are probably supposed to be door locations in Silph Co.,
 ; but they are unused.
