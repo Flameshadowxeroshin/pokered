@@ -1707,8 +1707,6 @@ wPlayerConfusedCounter:: ; d06b
 
 wPlayerToxicCounter:: ; d06c
 	ds 1
-wPlayerLeechSeedCounter::
-	ds 1
 
 wPlayerDisabledMove:: ; d06d
 ; high nibble: which move is disabled (1-4)
@@ -1723,9 +1721,6 @@ wEnemyConfusedCounter:: ; d070
 	ds 1
 
 wEnemyToxicCounter:: ; d071
-	ds 1
-
-wEnemyLeechSeedCounter::
 	ds 1
 
 wEnemyDisabledMove:: ; d072
