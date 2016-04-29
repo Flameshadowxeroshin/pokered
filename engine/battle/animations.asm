@@ -409,7 +409,6 @@ MoveAnimation: ; 78d5e (1e:4d5e)
 	call WaitForSoundToFinish
 	xor a
 	ld [wSubAnimSubEntryAddr],a
-	ld [wUnusedD09B],a
 	ld [wSubAnimTransform],a
 	dec a
 	ld [wAnimSoundID],a

@@ -136,7 +136,7 @@ TransformEffect_: ; 3bab1 (e:7ab1)
 	ld l, e
 	pop de
 .gotStatsOrModsToCopy
-	ld bc, $8
+	ld bc, $8 ; modify to 9: copy critical chance?
 	jp CopyData
 
 .failed

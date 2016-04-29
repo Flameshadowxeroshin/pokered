@@ -566,8 +566,8 @@ HandlePoisonBurnLeechSeed: ; 3c3bd (f:43bd)
 	ld hl, wEnemyMonHP
 	ld de, wEnemyMonStatus
 .playersTurn
-	ld a, [de]
-	and (1 << BRN) | (1 << PSN)
+	ld a, [wHandlingPoisonDamage]
+	and a
 	jr z, .notBurnedOrPoisoned
 	push hl
 	ld hl, HurtByPoisonText
@@ -581,6 +581,11 @@ HandlePoisonBurnLeechSeed: ; 3c3bd (f:43bd)
 	ld [wAnimationType], a
 	ld a,BURN_PSN_ANIM
 	call PlayMoveAnimation   ; play burn/poison animation
+	;note: this means that toxic damage is taken into account.
+	;however, it is impossible for a pokemon to be badly poisoned
+	;and burned simultaneously, so this is a can't happen case
+	ld a, 1
+	ld [wHandlingPoisonDamage], a
 	pop hl
 	call HandlePoisonBurnLeechSeed_DecreaseOwnHP
 .notBurnedOrPoisoned
@@ -605,6 +610,8 @@ HandlePoisonBurnLeechSeed: ; 3c3bd (f:43bd)
 	pop af
 	ld [H_WHOSETURN], a
 	pop hl
+	xor a
+	ld [wHandlingPoisonDamage], a
 	call HandlePoisonBurnLeechSeed_DecreaseOwnHP
 	call HandlePoisonBurnLeechSeed_IncreaseEnemyHP
 	push hl
@@ -665,7 +672,7 @@ HandlePoisonBurnLeechSeed_DecreaseOwnHP: ; 3c43d (f:443d)
 	and a
 	jr z, .playersTurn
 	ld hl, wEnemyBattleStatus3
-	ld de, wEnemyToxcCounter
+	ld de, wEnemyToxicCounter
 .playersTurn
 	bit BadlyPoisoned, [hl]
 	jr z, .noToxic
@@ -7349,7 +7356,7 @@ PoisonEffect: ; 3f24f (f:724f)
 	jr nz, .ok
 	ld b, ANIM_A9
 	ld hl, wEnemyBattleStatus3
-	ld de, wEnemyToxcCounter
+	ld de, wEnemyToxicCounter
 .ok
 	cp TOXIC
 	jr nz, .normalPoison ; done if move is not Toxic

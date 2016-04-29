@@ -1,4 +1,4 @@
-; currently available extra bytes: 14
+; currently available extra bytes: 27
 INCLUDE "constants.asm"
 
 flag_array: MACRO
@@ -655,8 +655,6 @@ wLowHealthAlarmDisabled:: ; ccf6
 wPlayerMonMinimized:: ; ccf7
 	ds 1
 
-	ds 13
-
 wLuckySlotHiddenObjectIndex:: ; cd05
 
 wEnemyNumHits:: ; cd05
@@ -689,6 +687,8 @@ wPlayerMonUnmodifiedSpeed:: ; cd16
 	ds 2
 wPlayerMonUnmodifiedSpecial:: ; cd18
 	ds 2
+wPlayerMonUnmodifiedSpDef::
+	ds 2
 
 ; stat modifiers for the player's current pokemon
 ; value can range from 1 - 13 ($1 to $D)
@@ -703,6 +703,8 @@ wPlayerMonSpeedMod:: ; cd1c
 	ds 1
 wPlayerMonSpecialMod:: ; cd1d
 	ds 1
+wPlayerMonSpDefMod::
+	ds 1
 
 wInGameTradeReceiveMonName:: ; cd1e
 
@@ -710,9 +712,10 @@ wPlayerMonAccuracyMod:: ; cd1e
 	ds 1
 wPlayerMonEvasionMod:: ; cd1f
 	ds 1
+wPlayerMonCriticalMod::
+	ds 1
 
-	ds 3
-
+	ds 1 ;padding
 wEnemyMonUnmodifiedLevel:: ; cd23
 	ds 1
 wEnemyMonUnmodifiedMaxHP:: ; cd24
@@ -728,6 +731,8 @@ wInGameTradeMonNick:: ; cd29
 wEnemyMonUnmodifiedSpeed:: ; cd2a
 	ds 2
 wEnemyMonUnmodifiedSpecial:: ; cd2c
+	ds 1
+wEnemyMonUnmodifiedSpDef::
 	ds 1
 
 wEngagedTrainerClass:: ; cd2d
@@ -748,9 +753,13 @@ wEnemyMonSpeedMod:: ; cd30
 	ds 1
 wEnemyMonSpecialMod:: ; cd31
 	ds 1
+wEnemyMonSpDefMod::
+	ds 1
 wEnemyMonAccuracyMod:: ; cd32
 	ds 1
 wEnemyMonEvasionMod:: ; cd33
+	ds 1
+wEnemyMonCritialMod::
 	ds 1
 
 wInGameTradeReceiveMonSpecies::
@@ -1698,12 +1707,12 @@ wPlayerConfusedCounter:: ; d06b
 
 wPlayerToxicCounter:: ; d06c
 	ds 1
+wPlayerLeechSeedCounter::
+	ds 1
 
 wPlayerDisabledMove:: ; d06d
 ; high nibble: which move is disabled (1-4)
 ; low nibble: disable turns left
-	ds 1
-
 	ds 1
 
 wEnemyNumAttacksLeft:: ; d06f
@@ -1713,14 +1722,15 @@ wEnemyNumAttacksLeft:: ; d06f
 wEnemyConfusedCounter:: ; d070
 	ds 1
 
-wEnemyToxcCounter:: ; d071
+wEnemyToxicCounter:: ; d071
+	ds 1
+
+wEnemyLeechSeedCounter::
 	ds 1
 
 wEnemyDisabledMove:: ; d072
 ; high nibble: which move is disabled (1-4)
 ; low nibble: disable turns left
-	ds 1
-
 	ds 1
 
 wPlayerNumHits:: ; d074
@@ -1884,7 +1894,7 @@ wTownMapSpriteBlinkingEnabled:: ; d09b
 ; non-zero when enabled. causes nest locations to blink on and off.
 ; the town selection cursor will blink regardless of what this value is
 
-wUnusedD09B:: ; d09b
+wHandlingPoisonDamage:: 
 	ds 1
 
 wFBDestAddr:: ; d09c
@@ -2024,6 +2034,8 @@ wMonHGrowthRate:: ; d0cb
 wMonHLearnset:: ; d0cc
 ; bit field
 	flag_array 50 + 5
+
+wMonHBaseSpDef::
 	ds 1
 
 wSavedTilesetType:: ; d0d4
